@@ -184,6 +184,7 @@ const setCity = (city)=>{
     console.log('cities from setCity:', cities);
     
     const userCity = JSON.parse(localStorage.getItem('city')) || [];
+    if(userCity[userCity.length - 1]?.usercity === city) return;
     userCity.push({
         usercity: cities
     });
@@ -200,9 +201,9 @@ const setCity = (city)=>{
 
  const getCity = () =>{
     let Allcity = JSON.parse(localStorage.getItem('city')) || [];
-    // if(Allcity.length === 0) return;
+    if(Allcity.length === 0) return;
 
-    const lastCity = Allcity[Allcity.length-1].usercity;
+    const lastCity = Allcity[Allcity.length - 1].usercity;
     getWeather(lastCity)
     console.log('last city from getCity', lastCity);
     
