@@ -11,9 +11,19 @@ const renderWeatherApp = (data)=>{
      if(data.cod == 404){
         // console.log(data.message);
         const notFound = document.createElement('h2')
-        notFound.className = 'notFound'
-        notFound.innerHTML = `Oops:${data.message}`;
-        weatherInfo.appendChild(notFound)
+        notFound.className = 'notFound';
+        notFound.innerHTML = `Oops! ${data.message}`;
+        
+        const notFoundImg = document.createElement('img')
+        notFoundImg.id = 'notFoundImg';
+        notFoundImg.src = 'assets/communication.png';
+        const errorHndlr = document.createElement('div')
+        errorHndlr.id = 'errorHndlr';
+
+        errorHndlr.appendChild(notFoundImg)
+        errorHndlr.appendChild(notFound)
+        weatherInfo.appendChild(errorHndlr)
+         
         return;
         
     }
@@ -109,7 +119,7 @@ const renderWeatherApp = (data)=>{
     const moreInfoBox = document.createElement('div')
     moreInfoBox.className = 'moreInfoBox'
 
-    const moreInfoA = [ data.weather[0].description, `${data.wind.speed} m/s`, `${data.main.pressure} hPa`, `${data.main.humidity} %`]
+    const moreInfoA = [ data.weather[0].description, `<i class="ri-windy-line"></i> ${data.wind.speed} m/s`, `<img src = 'assets/temperature-control.png' alt = 'pressure icon' id = "pressure" /> ${data.main.pressure} hPa`, `<img src = 'assets/climate.png' alt = 'humidity icon' id = "humidity" /> ${data.main.humidity} %`]
 
     moreInfoA.forEach(item => {
     const span = document.createElement('span')
